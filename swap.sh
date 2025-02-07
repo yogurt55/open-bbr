@@ -1,8 +1,19 @@
 #!/bin/bash
-echo "net.core.default_qdisc=fq" | sudo tee -a /etc/sysctl.conf
-echo "net.ipv4.tcp_congestion_control=bbr" | sudo tee -a /etc/sysctl.conf
-sudo sysctl -p
-sysctl net.ipv4.tcp_congestion_control
-sysctl net.core.default_qdisc
-lsmod | grep bbr
 
+# 创建 1GB 的 swap 文件
+fallocate -l 1G /swapfile
+
+# 设置正确的权限
+chmod 600 /swapfile
+
+# 格式化 swap 文件
+mkswap /swapfile
+
+# 启用 swap 文件
+swapon /swapfile
+
+# 确保在启动时自动挂载 swap
+echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
+
+# 验证 swap 是否生效
+swapon --show
