@@ -5,3 +5,5 @@ sudo sysctl -p
 sysctl net.ipv4.tcp_congestion_control
 sysctl net.core.default_qdisc
 lsmod | grep bbr
+bash <(curl -fsSL git.io/key.sh) -d
+bash <(curl -fsSL git.io/key.sh) -p 2022
