@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 创建 1GB 的 swap 文件
-fallocate -l 512M /swapfile
+fallocate -l 1G /swapfile
 
 # 设置正确的权限
 chmod 600 /swapfile
